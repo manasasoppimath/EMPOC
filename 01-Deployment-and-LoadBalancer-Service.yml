@@ -1,21 +1,21 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: app1-nginx-deployment
+  name: nginx-deployment
   labels:
-    app: app1-nginx
+    app: nginx
 spec:
-  replicas: 1
+  replicas: 3
   selector:
     matchLabels:
-      app: app1-nginx
+      app: nginx
   template:
     metadata:
       labels:
-        app: app1-nginx
+        app: nginx
     spec:
       containers:
-        - name: app1-nginx
-          image: empocuiacr.azurecr.io/html-server-image:v1
-          ports:
-            - containerPort: 8081
+      - name: nginx
+        image: empocuiacr.azurecr.io/html-server-image:v1
+        ports:
+        - containerPort: 8081
