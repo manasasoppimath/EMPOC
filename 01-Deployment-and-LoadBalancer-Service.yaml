@@ -1,19 +1,26 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: app1-nginx-deployment
+  name: nginx
 spec:
-  replicas: 1
+  replicas: 3
   selector:
     matchLabels:
-      app: app1-nginx
+      app: nginx
   template:
     metadata:
       labels:
-        app: app1-nginx
+        app: nginx
     spec:
       containers:
-      - name: app1-nginx-deployment
-        image: empocuiacr.azurecr.io/html-server-image:v1       
+      - name: nginx
+        image: mcr.microsoft.com/oss/nginx/nginx:1.15.2-alpine
         ports:
-        - containerPort: 6379  
+        - containerPort: 80
+        resources:
+          requests:
+            cpu: 250m
+            memory: 64Mi
+          limits:
+            cpu: 500m
+            memory: 256Mi
